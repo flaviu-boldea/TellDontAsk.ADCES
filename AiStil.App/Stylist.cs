@@ -6,11 +6,13 @@ public class Stylist
     public int StylistId { get; set; }
     public required string Name { get; set; }
     public IList<int> QualifiedServiceIds { get; set; } = [];
+    public IList<Slot> BookedSlots { get; set; } = [];
 
     public Appointment MakeAppointment(Slot slot, Service service)
     {
         CanPerformService(service);
-        
+        EnsureSlotIsAvailable(slot);
+
         return new Appointment{
             Slot = slot,
             Stylist = this,
@@ -24,6 +26,14 @@ public class Stylist
         if (!QualifiedServiceIds.Contains(service.ServiceId))
         {
             throw new Exception("Stylist not qualified for service");
+        }
+    }
+
+    public void EnsureSlotIsAvailable(Slot slot)
+    {
+        if (BookedSlots.Any(existingSlot => existingSlot.Start < slot.End && slot.Start < existingSlot.End))
+        {
+            throw new Exception("Slot busy");
         }
     }
 }

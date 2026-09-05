@@ -24,11 +24,6 @@ public class CreateAppointmentCommand(
 
     public Appointment Execute()
     {
-        if (!slots.IsSlotAvailable(request.Slot))
-        {
-            throw new Exception("Slot busy");
-        }
-
         Client client = clients.GetClient(request.ClientId);
         Stylist stylist = stylists.GetStylist(request.StylistId);
         Service service = services.GetService(request.ServiceId);

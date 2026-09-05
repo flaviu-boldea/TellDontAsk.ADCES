@@ -60,6 +60,31 @@ public class CreateAppointmentTests
     }
 
     [Fact]
+    public void ShouldRejectBusySlotFromStylistSchedule()
+    {
+        var stylist = stylistsRepo.GetStylist(stylistId);
+        stylist.BookedSlots =
+        [
+            new Slot(new DateTime(2024, 10, 20, 8, 0, 0), 15)
+        ];
+
+        Slot busySlot = new(new DateTime(2024, 10, 20, 8, 0, 0), 15);
+        int standardClientId = clients.First().ClientId;
+        AppointmentRequest request = new()
+        {
+            StylistId = stylistId,
+            ClientId = standardClientId,
+            ServiceId = serviceId,
+            Slot = busySlot
+        };
+
+        var command = new CreateAppointmentCommand(request, slotsRepo, clientsRepo, stylistsRepo, servicesRepo);
+
+        var exception = Assert.Throws<Exception>(() => command.Execute());
+        Assert.Equal("Slot busy", exception.Message);
+    }
+
+    [Fact]
     public void SouldReturnStylistDetails()
     {
         Slot emptySlot = new(new DateTime(2024, 10, 20, 8, 30, 0), 15);
