@@ -10,4 +10,9 @@ public record Slot
         Interval = length;
         End = start.AddMinutes(length);
     }
+
+    public bool Overlaps(Slot other)
+    {
+        return Start < other.End && other.Start < End;
+    }
 }

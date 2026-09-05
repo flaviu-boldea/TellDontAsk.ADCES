@@ -60,6 +60,15 @@ public class CreateAppointmentTests
     }
 
     [Fact]
+    public void ShouldDetectWhenSlotsOverlap()
+    {
+        var first = new Slot(new DateTime(2024, 10, 20, 8, 0, 0), 15);
+        var second = new Slot(new DateTime(2024, 10, 20, 8, 10, 0), 15);
+
+        Assert.True(first.Overlaps(second));
+    }
+
+    [Fact]
     public void ShouldRejectBusySlotFromStylistSchedule()
     {
         var stylist = stylistsRepo.GetStylist(stylistId);
@@ -161,6 +170,17 @@ public class CreateAppointmentTests
 
         var exception = Assert.Throws<Exception>(() => command.Execute());
         Assert.Equal("Stylist not qualified for service", exception.Message);
+    }
+
+    [Fact]
+    public void ClientShouldApplyMembershipDiscountToServicePrice()
+    {
+        var client = clients.Last();
+        var service = servicesRepo.GetService(serviceId);
+
+        var discountedPrice = client.CalculateCost(service.Price);
+
+        Assert.Equal(0, discountedPrice);
     }
 
     [Fact]

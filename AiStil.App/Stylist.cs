@@ -31,7 +31,7 @@ public class Stylist
 
     public void EnsureSlotIsAvailable(Slot slot)
     {
-        if (BookedSlots.Any(existingSlot => existingSlot.Start < slot.End && slot.Start < existingSlot.End))
+        if (BookedSlots.Any(existingSlot => existingSlot.Overlaps(slot)))
         {
             throw new Exception("Slot busy");
         }

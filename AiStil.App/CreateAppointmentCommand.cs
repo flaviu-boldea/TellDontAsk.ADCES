@@ -28,10 +28,6 @@ public class CreateAppointmentCommand(
         Stylist stylist = stylists.GetStylist(request.StylistId);
         Service service = services.GetService(request.ServiceId);
 
-        Appointment appointment = stylist.MakeAppointment(request.Slot, service);
-
-        appointment.Cost = client.CalculateCost(appointment.Cost);
-        appointment.ClientId = request.ClientId;
-        return appointment;
+        return client.BookAppointment(stylist, service, request.Slot);
     }
 }
