@@ -1,0 +1,30 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+out/
+
+# Rider / IntelliJ
+.idea/
+*.sln.iml
+*.iml
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.rsuser
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
