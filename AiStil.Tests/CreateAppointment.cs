@@ -178,7 +178,7 @@ public class CreateAppointmentTests
         var client = clients.Last();
         var service = servicesRepo.GetService(serviceId);
 
-        var discountedPrice = client.CalculateCost(service.Price);
+        var discountedPrice = client.PriceFor(service);
 
         Assert.Equal(0, discountedPrice);
     }

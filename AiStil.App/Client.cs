@@ -11,6 +11,11 @@ public class Client
         return Membership == "Standard" ? baseCost : 0;
     }
 
+    public decimal PriceFor(Service service)
+    {
+        return CalculateCost(service.Price);
+    }
+
     public Appointment BookAppointment(Stylist stylist, Service service, Slot slot)
     {
         Appointment appointment = stylist.MakeAppointment(slot, service);
