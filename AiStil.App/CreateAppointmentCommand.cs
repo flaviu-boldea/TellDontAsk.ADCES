@@ -33,28 +33,10 @@ public class CreateAppointmentCommand(
         Stylist stylist = stylists.GetStylist(request.StylistId);
         Service service = services.GetService(request.ServiceId);
 
-        if (!stylist.QualifiedServiceIds.Contains(service.ServiceId))
-        {
-            throw new Exception("Stylist not qualified for service");
-        }
+        Appointment appointment = stylist.MakeAppointment(request.Slot, service);
 
-        decimal cost;
-        if (client.Membership == "Standard")
-        {
-            cost = service.Price;
-        }
-        else
-        {
-            cost = 0;
-        }
-
-        return new Appointment()
-        {
-            Stylist = stylist,
-            Service = service,
-            ClientId = request.ClientId,
-            Slot = request.Slot,
-            Cost = cost
-        };
+        appointment.Cost = client.CalculateCost(appointment.Cost);
+        appointment.ClientId = request.ClientId;
+        return appointment;
     }
 }
