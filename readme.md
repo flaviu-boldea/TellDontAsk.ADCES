@@ -1,7 +1,14 @@
+Flaviu Boldea  
+    * Software Engineer, Group Lead  
+    * Voluntar AgileHub Brasov  
+    * I enjoy writing maintainable code -> easy-to-maintain applications  
+    * https://www.linkedin.com/in/flaviu-boldea-7b1760  
+
 Tell, don't ask 
-    * Andy Hunt and Dave Thomas 
-    * IEEE Software jurnal (Institute of Electrical and Electronic Engineers)
-    * Jan/Feb 2003
+
+    * Andy Hunt and Dave Thomas  
+    * IEEE Software jurnal (Institute of Electrical and Electronic Engineers)  
+    * Jan/Feb 2003  
     
     We explicitly do not want 
         to query an object about its state, 
@@ -15,18 +22,15 @@ Tell, don't ask
         method invocation is viewed as messages being between objects 
             not as function calls (Smalltalk)
 
-https://martinfowler.com/bliki/TellDontAsk.html
-https://media.pragprog.com/articles/jan_03_enbug.pdf 
-https://en.wikipedia.org/wiki/Law_of_Demeter
+https://martinfowler.com/bliki/TellDontAsk.html  
+https://www.udemy.com/course/beginning-oop-with-csharp/?couponCode=MT260907G1A  
+https://media.pragprog.com/articles/jan_03_enbug.pdf  
+https://en.wikipedia.org/wiki/Law_of_Demeter  
 
 What else:
    * Anemic model
    * Command pattern
    * Single responsibility
-   * Expression body
-   * Primary constructor
    * Dependency Inversion
-        ○ Who owns the interface?
-        ○ Dependency inversion, composition root
 
  
