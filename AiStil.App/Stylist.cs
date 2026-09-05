@@ -5,9 +5,5 @@ public class Stylist
 {
     public int StylistId { get; set; }
     public required string Name { get; set; }
-
-    public decimal GetPrice()
-    {
-        return 300;
-    }
+    public IList<int> QualifiedServiceIds { get; set; } = [];
 }
