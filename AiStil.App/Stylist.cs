@@ -5,8 +5,8 @@ public class Stylist
 {
     public int StylistId { get; set; }
     public required string Name { get; set; }
-    public IList<int> QualifiedServiceIds { get; set; } = [];
-    public IList<Slot> BookedSlots { get; set; } = [];
+    public IList<int> QualifiedServiceIds { private get; set; } = [];
+    public IList<Slot> BookedSlots { private get; set; } = [];
 
     public Appointment MakeAppointment(Slot slot, Service service)
     {
